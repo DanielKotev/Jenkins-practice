@@ -3,16 +3,8 @@ pipeline {
     stages {
         stage('Restore') {
             steps {
-                parallel(
-                    a: {
-                        echo "Restoring"
-                    },
-                    b: {
-                        sh 'dotnet restore'
-                    }
-                )
-                
-            }
+                sh 'dotnet restore'
+        }
         }
         stage('Build') {
             steps {
