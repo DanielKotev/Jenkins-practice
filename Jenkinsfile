@@ -1,11 +1,11 @@
 pipeline {
-    agent any
+    agent {
+        docker { image 'dotnet-sdk-7' }
+    }
     stages {
         stage("Install .net"){
             steps{
-                docker {
-                image 'mcr.microsoft.com/dotnet/sdk:7.0'
-                }
+                sh 'dotnet --version'
             }
         }
         stage('Restore') {
