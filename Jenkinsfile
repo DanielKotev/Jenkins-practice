@@ -1,14 +1,22 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
+        stage('Restore') {
             steps {
-                echo 'Building...'
+                parallel(
+                    a: {
+                        echo "Restoring"
+                    }
+                    b: {
+                        sh 'dotnet restore'
+                    }
+                )
+                
             }
         }
-        stage('Test') {
+        stage('Build') {
             steps {
-                echo 'Testing...'
+                sh 'dotnet build --configuration Release --no-restore '
             }
         }
         stage('Deploy') {
