@@ -2,7 +2,7 @@ pipeline {
     agent any
     stages {
         stage("Install .net"){
-            agent{
+            steps{
                 docker {
                 image 'dotnet-sdk-7'
                 }
