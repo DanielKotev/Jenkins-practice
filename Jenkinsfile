@@ -4,7 +4,7 @@ pipeline {
         stage("Install .net"){
             steps{
                 docker {
-                image 'dotnet-sdk-7'
+                image 'mcr.microsoft.com/dotnet/sdk:7.0'
                 }
             }
         }
