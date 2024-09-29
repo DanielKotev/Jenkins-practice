@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        label 'dotnet-agent'
+    }
     stages {
         stage('Restore') {
             steps {
