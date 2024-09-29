@@ -6,7 +6,7 @@ pipeline {
                 parallel(
                     a: {
                         echo "Restoring"
-                    }
+                    },
                     b: {
                         sh 'dotnet restore'
                     }
