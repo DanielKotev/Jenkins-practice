@@ -1,35 +1,34 @@
-# stages:
-#   - Build
-#   - Test
-#   - Staging
-# image: mcr.microsoft.com/dotnet/sdk:7.0
-# before_script:
-#  - dotnet restore
+stages:
+  - Build
+  - Test
+  - Staging
+image: mcr.microsoft.com/dotnet/sdk:7.0
+before_script:
+  - dotnet restore
 
-# build:
-#   stage: Build
-#   script:
-#     - dotnet build --configuration Release --no-restore
+build:
+  stage: Build
+  script:
+    - dotnet build --configuration Release --no-restore
 
-# NUnit-Test:
-#   stage: Test
-#   script:
-#     # - 'dotnet tool restore'
-#     - 'dotnet test --no-restore --verbosity normal --logger "trx;LogFileName=test_results.xml" /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=./TestResults/ /p:Threshold=50 /p:ThresholdType=line /p:ThresholdStat=total'
-#   coverage: '/Total\s*\|\s*(\d+(?:\.\d+)?)/'
-#   artifacts:
-#     paths:
-#       - ./**/TestResults/*.xml
-#     reports:
-#       coverage_report:
-#         coverage_format: cobertura
-#         path: './*/TestResults/coverage.cobertura.xml'
+NUnit-Test:
+  stage: Test
+  script:
+    # - 'dotnet tool restore'
+    - 'dotnet test --no-restore --verbosity normal --logger "trx;LogFileName=test_results.xml" /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=./TestResults/ /p:Threshold=50 /p:ThresholdType=line /p:ThresholdStat=total'
+  coverage: '/Total\s*\|\s*(\d+(?:\.\d+)?)/'
+  artifacts:
+    paths:
+      - ./**/TestResults/*.xml
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: "./*/TestResults/coverage.cobertura.xml"
 
-# Deploy-To-Staging:
-#   stage: Staging
-#   script :
-#     - echo "Deploying to staging"
-#   only:
-#     - main
-#   when: manual
-
+Deploy-To-Staging:
+  stage: Staging
+  script:
+    - echo "Deploying to staging"
+  only:
+    - main
+  when: manual
