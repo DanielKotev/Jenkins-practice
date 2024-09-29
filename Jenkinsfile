@@ -4,7 +4,7 @@ pipeline {
         stage("Install .net"){
             agent{
                 docker {
-                image 'mcr.microsoft.com/dotnet/sdk:7.0'
+                image 'dotnet-sdk-7'
                 }
             }
         }
