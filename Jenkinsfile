@@ -7,8 +7,9 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                sh 'dotnet restore'
                 sh 'dotnet --version'
+                sh 'dotnet restore'
+                
             }
         }
     }
