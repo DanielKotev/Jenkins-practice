@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        docker { image 'dotnet-sdk-7' }
-    }
+    agent any
     stages {
         stage('Test') {
             steps {
