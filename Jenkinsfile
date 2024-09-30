@@ -1,9 +1,16 @@
 pipeline {
     agent any
     stages {
-        stage('Test') {
+        stage('restore') {
             steps {
-                sh '''dotnet --version'''
+                sh '''dotnet restore'''
+                
+                
+            }
+        }
+        stage('build') {
+            steps {
+                sh '''dotnet build --configuration Release --no-restore'''
                 
                 
             }
