@@ -12,7 +12,7 @@ pipeline {
             steps {
                 sh '''dotnet build --configuration Release --no-restore'''
                 
-                
+                asda
             }
         }
     }
