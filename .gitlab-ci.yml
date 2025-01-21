@@ -11,6 +11,9 @@ build:
   script:
     - dotnet build --configuration Release --no-restore
 
+
+
+
 NUnit-Test:
   stage: Test
   script:
